@@ -1,54 +1,48 @@
 # claude-dotfiles
 
-Personal [Claude Code](https://claude.com/claude-code) skills.
+Personal [Claude Code](https://claude.com/claude-code) skills and hooks.
 
-## Skills
+## Contents
 
-| Skill | Description |
-| --- | --- |
-| [`work-item`](skills/work-item/SKILL.md) | Drafts and creates Jira tickets in a short, consistent format. Fills empty start/due dates, adds AI work details as a comment, links the GitHub PR, and keeps the PR body concise. |
-
-## Hooks
-
-| Hook | Description |
-| --- | --- |
-| [`tmux-notify`](hooks/tmux-notify/README.md) | macOS notification on `Stop` / `Notification`. Click to jump to the tmux pane that raised it. |
+| Name | Type | Description |
+| --- | --- | --- |
+| [`work-item`](skills/work-item/SKILL.md) | Skill | Drafts and creates Jira tickets in a short, consistent format. Fills empty start/due dates, adds AI work details as a comment, links the GitHub PR, and keeps the PR body concise. |
+| [`tmux-notify`](hooks/tmux-notify/README.md) | Hook | macOS notification on `Stop` / `Notification`. Click to jump to the tmux pane that raised it. |
 
 ## Install
 
+Clone the repo, then symlink what you need into a Claude config directory.
+
 ```bash
-git clone https://github.com/jx2lee/claude-dotfiles.git
-REPO="$(pwd)/claude-dotfiles"
-
-# Pick one
-CLAUDE_DIR=~/.claude                   # global: every project
-CLAUDE_DIR=/path/to/project/.claude    # project: that directory only
-
-# Skills
-mkdir -p "$CLAUDE_DIR/skills"
-ln -s "$REPO/skills/work-item" "$CLAUDE_DIR/skills/work-item"
-
-# Hooks
-mkdir -p "$CLAUDE_DIR/hooks"
-ln -s "$REPO/hooks/tmux-notify" "$CLAUDE_DIR/hooks/tmux-notify"
+git clone https://github.com/jx2lee/claude-dotfiles.git ~/claude-dotfiles
 ```
 
-Then register the hook in `$CLAUDE_DIR/settings.json`. See [tmux-notify](hooks/tmux-notify/README.md#install).
+Global (all projects):
 
-For a project install, the symlinks point to your local clone. Add them to `.gitignore` instead of committing them.
-
-## Usage
-
-Ask Claude Code in natural language:
-
+```bash
+mkdir -p ~/.claude/skills ~/.claude/hooks
+ln -sfn ~/claude-dotfiles/skills/work-item ~/.claude/skills/work-item
+ln -sfn ~/claude-dotfiles/hooks/tmux-notify ~/.claude/hooks/tmux-notify
 ```
-지라 올려줘
+
+Project (one directory only, run from the project root):
+
+```bash
+mkdir -p .claude/skills .claude/hooks
+ln -sfn ~/claude-dotfiles/skills/work-item .claude/skills/work-item
+ln -sfn ~/claude-dotfiles/hooks/tmux-notify .claude/hooks/tmux-notify
 ```
+
+The project symlinks point to your local clone, so add them to `.gitignore`.
+
+Hooks also need an entry in `settings.json`. See [tmux-notify](hooks/tmux-notify/README.md#setup).
 
 ## Requirements
 
-- Atlassian MCP server (Jira)
-- `gh` CLI (for PR links)
+| Name | Needs |
+| --- | --- |
+| `work-item` | Atlassian MCP server (Jira), `gh` CLI |
+| `tmux-notify` | macOS, [terminal-notifier](https://github.com/julienXX/terminal-notifier), `jq`, `tmux` |
 
 ## License
 
