@@ -6,7 +6,7 @@ Personal [Claude Code](https://claude.com/claude-code) skills and hooks.
 
 | Name | Type | Description |
 | --- | --- | --- |
-| [`work-item`](skills/work-item/SKILL.md) | Skill | Drafts and creates Jira tickets in a short, consistent format. Fills empty start/due dates, adds AI work details as a comment, links the GitHub PR, and keeps the PR body concise. |
+| [`work-item`](skills/work-item/SKILL.md) | Skill | Drafts, creates and updates Jira tickets in a short, consistent format. Fills empty start/due dates, adds AI work details as a comment, links the GitHub PR, and keeps the PR body concise. |
 | [`tmux-notify`](hooks/tmux-notify/README.md) | Hook | macOS notification on `Stop` / `Notification`. Click to jump to the tmux pane that raised it. |
 
 ## Install
